@@ -5,4 +5,4 @@ Each Folder is a tool that can be added to your Maya Tool shelf. To use the tool
 
 Here is a description of what each Maya Tool does:
 
-- Rig Skeleton Generator: Generates a Bipedal Skeleton in Maya with renamed bones and inside a locator. Also allows the user to name the rig by propmting her with a GUI. 
+- Rig Skeleton Generator: Generates a Bipedal Skeleton in Maya with renamed bones inside a locator. Also allows the user to name the rig by propmting them with a GUI. 
