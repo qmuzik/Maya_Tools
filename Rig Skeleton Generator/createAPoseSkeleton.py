@@ -1,5 +1,5 @@
-# Rig Skeleton Generator Version 1.0 
-# By Quincy Muzik on 5/6/2023 
+# A Pose Skeleton Generator Function
+# By Quincy Muzik on 3/29/2024
 # Generates a rig skeleton in a A-pose with renamed joints for each bone 
 # Method ONLY (This is used inside RigSkeletonCreator Class)
 
