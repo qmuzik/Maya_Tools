@@ -192,7 +192,8 @@ class RigSkeltonGeneratorClass:
         
         # Exits the Tool the skeleton has been created
         cmds.deleteUI(self.window, window=True)
-        
+
+# Main method    
 RigSkeltonGeneratorClass()
 
 # TODO 
