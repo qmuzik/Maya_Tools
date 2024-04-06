@@ -149,3 +149,7 @@ cmds.joint(name="rightHandPinky3",p=(-35.2,24.75,-2.5))
 cmds.joint(name="rightHandPinky4",p=(-36.7,24.75,-2.5))
 
 # Rotate the Left and Right Arms in a A Pose
+cmds.select("leftArm")
+cmds.rotate(0,0,-70)
+cmds.select("rightArm")
+cmds.rotate(0,0,70)
