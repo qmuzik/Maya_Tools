@@ -12,12 +12,12 @@ class RigSkeltonGeneratorClass:
         # Variable/Flags for Window 
         self.window = "QM_Window"
         self.title = "Rig Skeleton Generator (Bipedal)"
-        self.size = (400,200)
+        self.size = (300,200)
         
         # Closes window if already open
         if cmds.window(self.window, exists = True):
             cmds.deleteUI(self.window, window=True)
-
+        
         # Creates a new window 
         self.win = cmds.window(self.window, title=self.title, widthHeight=self.size)
         cmds.columnLayout(adjustableColumn = True)
@@ -42,6 +42,10 @@ class RigSkeltonGeneratorClass:
     
     # Creates the Rig Skeleton when the button is pressed 
     def createSkeleton(self,*args):
+        
+        # Resets the Scene 
+        cmds.select(all = True)
+        cmds.delete()
         
         # Input from UI that is used
         name = cmds.textFieldGrp(self.rigName,query=True,text=True)
