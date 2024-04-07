@@ -1,4 +1,4 @@
-# Rig Skeleton Generator Version Class 1.0 
+# Bipdeal Rig Skeleton Generator Version Class 1.0 
 # By Quincy Muzik
 # App that lets an artist create a custom bipedal rig skeleton via GUI 
 
@@ -9,6 +9,7 @@ class RigSkeltonGeneratorClass:
     # Constructor/GUI Creation
     def __init__(self):
         
+        # Variable/Flags for Window 
         self.window = "QM_Window"
         self.title = "Rig Skeleton Generator (Bipedal)"
         self.size = (400,200)
@@ -34,20 +35,20 @@ class RigSkeltonGeneratorClass:
         
         # Button that will generate skeleton
         cmds.separator(height = 20,style = 'none')
-        self.rigCreationButton = cmds.button(label = "Create Rig",command=self.createSkeleton)
+        self.rigCreationButton = cmds.button(label = "Generate Skeleton",recomputeSize = False,command=self.createSkeleton)
         
         # Display the window
         cmds.showWindow(self.win)
     
     # Creates the Rig Skeleton when the button is pressed 
     def createSkeleton(self,*args):
-    
+        
         # Input from UI that is used
         name = cmds.textFieldGrp(self.rigName,query=True,text=True)
         
         # Create Locator to House the Skeleton/Components
         cmds.spaceLocator(name = name,position = (0,-33.5,2))
-
+        
         # Create the Root aka Hips of Skeleton 
         cmds.joint(name="root",p=(0,1,-1.5))
 
