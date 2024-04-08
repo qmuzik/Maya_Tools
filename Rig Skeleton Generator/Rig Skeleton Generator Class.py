@@ -12,29 +12,36 @@ class RigSkeltonGeneratorClass:
         # Variable/Flags for Window 
         self.window = "QM_Window"
         self.title = "Rig Skeleton Generator (Bipedal)"
-        self.size = (300,200)
+        fingerSelectionNum = 0
         
         # Closes window if already open
         if cmds.window(self.window, exists = True):
             cmds.deleteUI(self.window, window=True)
         
         # Creates a new window 
-        self.win = cmds.window(self.window, title=self.title, widthHeight=self.size)
+        self.win = cmds.window(self.window, title=self.title, toolbox = True)
         cmds.columnLayout(adjustableColumn = True)
         
         # Title for the window
         cmds.text(self.title)
-        cmds.separator(height = 20)
+        cmds.separator(height = 10)
         
         # Allows user to enter name of rig skeleton 
         self.rigName = cmds.textFieldGrp(label = "Character Name: ")
         
         # Allows user to choose number of fingers for skeleton (Future Update)
-        # cmds.separator(height = 10,style = 'none')
-        # self.numOfFingers = cmds.radioButtonGrp( label='Number of Fingers:', labelArray3=['3', '4', '5'], numberOfRadioButtons=3,data1=3,data2=4,data=5)
+        #cmds.separator(height = 10,style = 'none')
+        #cmds.radioCollection()
+        #cmds.radioButton(label = "first")
+        #cmds.radioButton(label = "second")
+        #self.numOfFingers = cmds.radioButtonGrp( label='Number of Fingers:', labelArray3=['3', '4', '5'], numberOfRadioButtons=3)
+        
+        # Button that clears the scene 
+        cmds.separator(height = 10,style = 'none')
+        self.clearSceneButton = cmds.button(label="Clear Scene",recomputeSize = False,command=self.resetScene)
         
         # Button that will generate skeleton
-        cmds.separator(height = 20,style = 'none')
+        cmds.separator(height = 10,style = 'none')
         self.rigCreationButton = cmds.button(label = "Generate Skeleton",recomputeSize = False,command=self.createSkeleton)
         
         # Display the window
@@ -42,10 +49,6 @@ class RigSkeltonGeneratorClass:
     
     # Creates the Rig Skeleton when the button is pressed 
     def createSkeleton(self,*args):
-        
-        # Resets the Scene 
-        cmds.select(all = True)
-        cmds.delete()
         
         # Input from UI that is used
         name = cmds.textFieldGrp(self.rigName,query=True,text=True)
@@ -197,6 +200,15 @@ class RigSkeltonGeneratorClass:
         
         # Exits the Tool the skeleton has been created
         cmds.deleteUI(self.window, window=True)
+        
+        # Generates a message informing user of Skeleton being created
+        cmds.inViewMessage( amg='Skeleton has been successfully generated', pos='midCenter', fade=True )
+        
+    # Resets the Scene when the button is pressed and informs the user with a message 
+    def resetScene(self,*args):
+        cmds.select(all=True)
+        cmds.delete()
+        cmds.inViewMessage( amg='Scene has been reset', pos='midCenter', fade=True )
 
 # Main method    
 RigSkeltonGeneratorClass()
