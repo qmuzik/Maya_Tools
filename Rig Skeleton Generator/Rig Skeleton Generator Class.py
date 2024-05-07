@@ -13,6 +13,7 @@ class RigSkeltonGeneratorClass:
         self.window = "QM_Window"
         self.title = "Rig Skeleton Generator (Bipedal)"
         fingerSelectionNum = 0
+        poseSelectionNum = 0
         
         # Closes window if already open
         if cmds.window(self.window, exists = True):
@@ -30,11 +31,24 @@ class RigSkeltonGeneratorClass:
         self.rigName = cmds.textFieldGrp(label = "Character Name: ")
         
         # Allows user to choose number of fingers for skeleton (Future Update)
-        #cmds.separator(height = 10,style = 'none')
-        #cmds.radioCollection()
-        #cmds.radioButton(label = "first")
-        #cmds.radioButton(label = "second")
-        #self.numOfFingers = cmds.radioButtonGrp( label='Number of Fingers:', labelArray3=['3', '4', '5'], numberOfRadioButtons=3)
+        cmds.separator(height = 10,style = 'none')
+        cmds.radioCollection()
+        self.numOfFingers = cmds.radioButtonGrp( label='Number of Fingers:', labelArray3=['3', '4', '5'], numberOfRadioButtons=3)
+
+        # Allows user to choose pose type (A pose or T pose)
+        cmds.separator(height = 10,style = 'none')
+        cmds.radioCollection()
+        self.poseSelection = cmds.radioButtonGrp(label='Pose:', labelArray2=['T-Pose','A-Pose'], numberOfRadioButtons = 2)
+
+        # Allows user to choose generation with IK, FK, or No Handles
+        cmds.separator(height = 10,style = 'none')
+        cmds.radioCollection()
+        self.handleSelection = cmds.radioButtonGrp(label='Pose:', labelArray2=['IK','FK', 'None'], numberOfRadioButtons = 3)
+
+        # Allows user to choose genration with or without nurb controls 
+        cmds.separator(height = 10,style = 'none')
+        cmds.radioCollection()
+        self.poseSelection = cmds.radioButtonGrp(label='Pose:', labelArray2=['T-Pose','A-Pose'], numberOfRadioButtons = 3)
         
         # Button that clears the scene 
         cmds.separator(height = 10,style = 'none')
@@ -197,6 +211,12 @@ class RigSkeltonGeneratorClass:
         cmds.joint(name="rightHandPinky2",p=(-33.4,24.75,-2.5))
         cmds.joint(name="rightHandPinky3",p=(-35.2,24.75,-2.5))
         cmds.joint(name="rightHandPinky4",p=(-36.7,24.75,-2.5))
+
+        # # Rotate the Left and Right Arms in a A Pose if the Radio Button for A pose is selected 
+        #cmds.select("leftArm")
+        #cmds.rotate(0,0,-70)
+        #cmds.select("rightArm")
+        #cmds.rotate(0,0,70)
         
         # Exits the Tool the skeleton has been created
         cmds.deleteUI(self.window, window=True)
@@ -214,7 +234,5 @@ class RigSkeltonGeneratorClass:
 RigSkeltonGeneratorClass()
 
 # TODO 
-    # GET FEEDBACK FROM ZOE AND JESSE:
     # Implement Figner Selection (Future Update)
-    # Add Constraints, IKs, and NURB Controls  
-    # Insert Mesh for Skinning (FEEDBACK First) 
+    # Add IKs, and NURB Controls  
